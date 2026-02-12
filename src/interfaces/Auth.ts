@@ -3,7 +3,7 @@ export interface User {
     username: string
 }
 
-export interface Login {
+export interface LoginCredentials {
     username: string,
     password: string
 }
@@ -15,6 +15,6 @@ export interface AuthRes {
 
 export interface AuthContext {
     user: User | null,
-    login: (credentials: Login) => Promise<void>;
+    login: (credentials: LoginCredentials) => Promise<void>;
     logout: () => void;
 }
