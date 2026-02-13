@@ -1,9 +1,9 @@
 import { createBrowserRouter } from "react-router-dom";
-import Home from "../pages/Home";
-import PostList from "../pages/PostList";
-import Post from "../pages/Post";
-import Login from "../pages/Login";
-import Admin from "../pages/Admin";
+import Home from "../pages/HomePage";
+import PostList from "../pages/PostListPage";
+import Post from "../pages/PostPage";
+import Login from "../pages/LoginPage";
+import Admin from "../pages/AdminPage";
 import ProtectedRoutes from "./ProtectedRoutes";
 
 // Create router configuration for the application
