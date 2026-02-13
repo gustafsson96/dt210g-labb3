@@ -1,17 +1,37 @@
-import { useState } from "react";
+import { useState, type SyntheticEvent } from "react";
+import { useAuth } from "../context/AuthContext";
+import { useNavigate } from "react-router-dom";
 import "./LoginPage.css";
 
 const LoginPage = () => {
     // States for user input
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
+    const [error, setError] = useState("");
+
+    const { login } = useAuth();
+    const navigate = useNavigate();
+
+    const handleSubmit = async (e: SyntheticEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        setError("");
+
+        try {
+            await login({ username, password });
+            navigate("/admin");
+
+        } catch (error) {
+            setError("Login failed.")
+        }
+    }
 
     return (
         // Login form and container
         <div className="login-container">
             <div className="login-card">
                 <h1 className="login-title">Login</h1>
-                <form className="login-form">
+                {error && <p className="error">{error}</p>}
+                <form className="login-form" onSubmit={handleSubmit}>
                     <div className="form-group">
                         <label htmlFor="username">Username</label>
                         <input
