@@ -1,11 +1,11 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import './index.css'
-import { protectedRoutes } from './routes/ProtectedRoutes.tsx'
-import { publicRoutes } from './routes/PublicRoutes.tsx'
+import ProtectedRoutes from './routes/ProtectedRoutes.tsx'
+import { PublicRoutes } from './routes/PublicRoutes.tsx'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 
-const router = createBrowserRouter([...publicRoutes, ...protectedRoutes]);
+const router = createBrowserRouter([...PublicRoutes, ...ProtectedRoutes]);
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>

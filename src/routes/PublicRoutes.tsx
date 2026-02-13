@@ -3,7 +3,7 @@ import PostList from "../pages/PostList";
 import Post from "../pages/Post";
 import Login from "../pages/Login";
 
-export const publicRoutes = [
+export const PublicRoutes = [
   { path: "/", element: <Home /> },
   { path: "/posts", element: <PostList /> },
   { path: "/posts/:id", element: <Post /> },
