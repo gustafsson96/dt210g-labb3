@@ -41,7 +41,7 @@ function AdminPage() {
         <>
             <Navbar />
             <div className="admin-page">
-                <h1>Admin</h1>
+                <h1>Admin View</h1>
                 <Link to="/admin/create" className="create-post-link">Create a new blog post</Link>
 
                 {posts.map(post => (
