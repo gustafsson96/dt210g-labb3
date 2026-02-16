@@ -35,13 +35,13 @@ function PostList() {
     if (error) return <p>Error</p>
 
     return (
-            <div className="postlist-container">
-                <h1>Alla poster</h1>
+            <main className="postlist-container">
+                <h1>Julia's Blog</h1>
                 {posts.length === 0 && <p>No blog posts to show.</p>}
                 {posts.map((post) => (
                     <PostItem key={post.id} post={post} />
                 ))}
-            </div>
+            </main>
     );
 }
 

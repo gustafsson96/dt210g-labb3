@@ -2,6 +2,7 @@ import { useState, useEffect, type SyntheticEvent } from "react";
 import { useAuth } from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
 import Navbar from "../components/Navbar";
+import Footer from "../components/Footer"
 import "./LoginPage.css";
 
 const LoginPage = () => {
@@ -35,8 +36,8 @@ const LoginPage = () => {
 
     return (
         <>
-        <Navbar />
-            <div className="login-container">
+            <Navbar />
+            <main className="login-container">
                 <div className="login-card">
                     <h1 className="login-title">Login</h1>
                     {error && <p className="error">{error}</p>}
@@ -70,7 +71,8 @@ const LoginPage = () => {
                         </button>
                     </form>
                 </div>
-            </div>
+            </main>
+            <Footer />
         </>
     );
 };

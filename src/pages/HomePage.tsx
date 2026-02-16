@@ -1,4 +1,5 @@
 import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
 import PostList from "../components/PostList";
 
 function Blog() {
@@ -6,6 +7,7 @@ function Blog() {
     <>
     <Navbar />
     <PostList/>
+    <Footer />
     </>
     )
 }

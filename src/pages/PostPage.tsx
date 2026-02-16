@@ -3,6 +3,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import { getPost } from "../services/postService";
 import type { Post } from "../interfaces/Post";
 import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
 import "./PostPage.css";
 
 function PostPage() {
@@ -41,25 +42,27 @@ function PostPage() {
     return (
         <>
             <Navbar />
-            <div className="post-page-container">
-                <h1>{post.title}</h1>
-                <p className="post-meta">
-                <span>Av {post.author} |</span>
-                <span> 
-                    {new Date(post.created_at).toLocaleString(undefined, {
-                        year: "numeric",
-                        month: "short",
-                        day: "numeric",
-                        hour: "2-digit",
-                        minute: "2-digit"
-                    })}
-                </span>
-                </p>
-                <p className="post-content">{post.content}</p>
-                <button className="back-button" onClick={() => navigate("/")}>
-                    ← Back to blog
-                </button>
-            </div>
+            <main>
+                <div className="post-page-container">
+                    <h1>{post.title}</h1>
+                    <p className="post-meta">
+                        <span>Av {post.author} |</span>
+                        <span>
+                            {new Date(post.created_at).toLocaleString(undefined, {
+                                year: "numeric",
+                                month: "short",
+                                day: "numeric",
+                                hour: "2-digit",
+                                minute: "2-digit"
+                            })}
+                        </span>
+                    </p>
+                    <p className="post-content">{post.content}</p>
+                    <button className="back-button" onClick={() => navigate("/")}>
+                        ← Back to blog
+                    </button>
+                </div>
+            </main>
         </>
     );
 }

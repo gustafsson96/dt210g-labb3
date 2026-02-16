@@ -1,6 +1,6 @@
 .post-page-container {
     max-width: 800px;
-    margin: 2em auto;
+    margin: 5em auto;
     padding: 0 1em;
 }
 
@@ -18,7 +18,7 @@
 
 .back-button {
     padding: 0.5em 1em;
-    background-color: rgb(169, 27, 122);
+    background-color: rgb(169, 27, 122)!important;
     color: white;
     border: none;
     border-radius: 4px;
@@ -27,5 +27,5 @@
 }
 
 .back-button:hover {
-    background-color: rgb(218, 93, 176);
+    background-color: rgb(218, 93, 176)!important;
 }

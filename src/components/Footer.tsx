@@ -1,8 +1,10 @@
+import "./Footer.css";
+
 function Footer() {
   return (
-    <div>
-      
-    </div>
+    <footer>
+      <p>Laboration 3 - Lösning av Julia Gustafsson</p>
+    </footer>
   )
 }
 
