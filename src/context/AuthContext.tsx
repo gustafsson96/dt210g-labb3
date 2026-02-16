@@ -29,7 +29,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
                 body: JSON.stringify(credentials)
             });
 
-            if (!response.ok) throw new Error("Inloggning misslyckades.");
+            if (!response.ok) throw new Error("Login failed");
 
             const data = await response.json() as AuthRes;
 
@@ -61,7 +61,7 @@ export const useAuth = (): AuthContext => {
     const context = useContext(AuthContext);
 
     if (!context) {
-        throw new Error("useAuth måste kopplas till en AuthProvider")
+        throw new Error("useAuth must be used with an AuthProvider")
     }
 
     return context;
