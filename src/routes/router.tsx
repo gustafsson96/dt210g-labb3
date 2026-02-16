@@ -1,7 +1,7 @@
 import { createBrowserRouter } from "react-router-dom";
 import Home from "../pages/HomePage";
 import PostList from "../pages/PostListPage";
-import Post from "../pages/PostPage";
+import PostPage from "../pages/PostPage";
 import Login from "../pages/LoginPage";
 import ProtectedRoutes from "./ProtectedRoutes";
 import AdminCreatePost from "../pages/AdminCreatePost";
@@ -13,10 +13,10 @@ export const router = createBrowserRouter([
   // Public routes
   { path: "/", element: <Home /> },
   { path: "/posts", element: <PostList /> },
-  { path: "/posts/:id", element: <Post /> },
+  { path: "/posts/:id", element: <PostPage /> },
   { path: "/login", element: <Login /> },
   // Protected admin route
-  { path: "/admin", element: <ProtectedRoutes><AdminPage /></ProtectedRoutes> },
-  { path: "/admin/create", element: <ProtectedRoutes><AdminCreatePost /></ProtectedRoutes> },
-  { path: "/admin/edit/:id", element: <ProtectedRoutes><AdminEditPost /></ProtectedRoutes> }
+{ path: "/admin", element: <ProtectedRoutes><AdminPage /></ProtectedRoutes> },
+{ path: "/admin/create", element: <ProtectedRoutes><AdminCreatePost /></ProtectedRoutes> },
+{ path: "/admin/edit/:id", element: <ProtectedRoutes><AdminEditPost /></ProtectedRoutes> }
 ]);

@@ -1,5 +1,10 @@
-function Post() {
-    return <h1>Post</h1>;
+function PostPage() {
+
+    return (
+        <>
+            <h1>A post</h1>
+        </>
+    );
 }
 
-export default Post;
+export default PostPage;
