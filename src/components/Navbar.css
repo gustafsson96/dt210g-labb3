@@ -13,14 +13,22 @@
 }
 
 .nav-link {
-  margin-right: 1em;
+  position: relative;
+  margin-right: 1.5em;
   text-decoration: none;
   color: rgb(169, 27, 122);
-  font-weight: 500;
+  font-weight: bold;
+  padding: 0.4em 0.8em;
+  border-radius: 6px;
+  transition: 
+    background-color 0.2s ease,
+    color 0.2s ease,
+    transform 0.15s ease;
 }
 
 .nav-link:hover {
-  text-decoration: underline;
+  background-color: rgba(169, 27, 122, 0.12);
+  color: rgb(169, 27, 122);
 }
 
 .nav-button {
@@ -34,4 +42,9 @@
 
 .nav-button:hover {
   background-color: rgb(218, 93, 176);
+}
+
+.nav-link.active {
+  background-color: rgb(169, 27, 122);
+  color: white;
 }
