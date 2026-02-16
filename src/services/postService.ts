@@ -1,22 +1,35 @@
-import type { Post }  from "../interfaces/Post";
+import type { Post } from "../interfaces/Post";
 
 const api = "http://localhost:3000";
 
 // Get the token
 const getToken = () => localStorage.getItem("token");
 
-// GET all blog posts from api
+// GET all blog posts
 export const getPosts = async () => {
-    const response = await fetch(`${api}/posts`,{
+    const response = await fetch(`${api}/posts`, {
         method: "GET"
     });
 
     if (!response.ok) {
-        throw new Error("An error occurred.");
+        throw new Error("Could not fetch posts");
     }
 
     return response.json();
 }
+
+// GET a single post
+export const getPost = async (id: number) => {
+    const response = await fetch(`${api}/posts/${id}`, {
+        method: "GET"
+    });
+
+    if (!response.ok) {
+        throw new Error("Could not fetch post");
+    }
+
+    return response.json();
+};
 
 // POST to create a new post
 export const createPost = async (post: Omit<Post, "id" | "created_at" | "updated_at">) => {
