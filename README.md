@@ -1,73 +1,44 @@
-# React + TypeScript + Vite
+# Laboration 3, DT210G
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Lösningen för denna laboration består av en blogg-applikation som har skapats med React, Vite och TypeScript. En användare kan via de publika vyerna läsa ut bloggposter via ett API skapat särkskilt för denna laboration och visa en enskild bloggpost. Det finns även ett formulär för att logga in. En inloggad användare (admin) autentiseras med JSON Web token och kan utföra handlingar med full CRUD-funktionalitet via skyddade routes. Routing har implementerats med React Router. 
 
-Currently, two official plugins are available:
+## Funktionalitet
+Applikationen består av både publika och skyddade vyer. Om en användare försöker nå en skyddad vy utan att vara autentiserad omdirigeras den till inloggningsformuläret.Lyckad inloggning returnerar en JWT som lagras i localStorage och används för att autentisera skyddade anrop. 
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+### Publik funktionalitet
+* Visa bloggposter hämtade från APIet i en lista med en del av innehållet.
+* Visa en enskild bloggpost med allt innehåll presenterat. 
+* Navigering mellan bloggsida och inloggninsformulär via en huvudmeny. 
+* Inloggningsformulär för en administratör. 
 
-## React Compiler
+### Skyddad funktionalitet
+* Läsa ut alla bloggposter i en lista med knappar för att uppdatera och radera. 
+* Skapa en ny bloggpost. 
+* Uppdatera en befintlig bloggpost. 
+* Radera en bloggpost. 
+* Logga ut via en knapp i huvudmenyn (visas enbart när användaren är inloggad).
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Använda tekniker
+* **React** - För att skapa användargränssnitt med komponentbaserad struktur. 
+* **Vite** - Utvecklingsserver. 
+* **TypeScript** - Programmeringsspråk för statisk typning. 
+* **React Router** - För routing mellan publika och skyddade vyer. 
+* **JSON Web Token (JWT)** - För autentisering av admin vid inloggning. 
+* **CSS** - För både komponentspecifik och global styling. 
+* **REST API** - Ett särskilt backend API har skapats för att hämta och hantera bloggposter med full CRUD-funktionalitet. Det innehåller även autentiserings-routes. 
 
-## Expanding the ESLint configuration
+## Skapade sidkomponenter
+* HomePage - Läser ut lista med inlägg från en separat PostList-komponent. 
+* PostPage - Visar en enskild post. 
+* LoginPage - Inloggningsformulär. 
+* AdminPage - Administratörsvy (skyddad). 
+* AdminCreatePost - Formulär för att skapa en ny post (skyddad). 
+* AdminEditPost - Förifyllt formulär för att uppdatera en befintlig post (skyddad). 
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## Övriga komponenter
+* Navbar - Huvudmeny. 
+* Footer - Sidfot. 
+* PostItem - Struktur för en enskild post i listan. 
+* PostList - Listan med alla poster för den publika vyn. 
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
-
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
