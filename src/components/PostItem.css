@@ -1,0 +1,37 @@
+.post-item-link{
+    text-decoration: none;
+}
+
+.post-item {
+  border: 1px solid #ddd;
+  padding: 1.2em;
+  margin-bottom: 1em;
+  background-color: #fffefc;
+  box-shadow: 0 1px 5px rgba(0,0,0,0.05);
+  transition: background-color 0.3s ease;
+}
+
+.post-item:hover {
+  background-color: rgb(255, 239, 249);
+}
+
+.post-item h2 {
+  color: rgb(169, 27, 122);
+  margin-bottom: 0;
+}
+
+.post-meta {
+  font-size: 0.8em;
+  color: #777;
+  margin-bottom: 0.5em;
+}
+
+.post-meta span {
+  margin-right: 0.5em;
+}
+
+.post-excerpt {
+  margin: 0.7em 0;
+  color: #333;
+}
+
