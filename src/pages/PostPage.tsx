@@ -3,7 +3,6 @@ import { useParams, useNavigate } from "react-router-dom";
 import { getPost } from "../services/postService";
 import type { Post } from "../interfaces/Post";
 import Navbar from "../components/Navbar";
-import Footer from "../components/Footer";
 import "./PostPage.css";
 
 function PostPage() {
