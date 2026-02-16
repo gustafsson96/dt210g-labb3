@@ -18,7 +18,7 @@ function PostList() {
                 setPosts(data);
             } catch (err) {
                 // Error message
-                setError("Kunde inte läsa in bloggposter.");
+                setError("Could not load blog posts.");
             } finally {
                 // Set loading to false
                 setLoading(false);
@@ -30,13 +30,13 @@ function PostList() {
 
     // Show loading or error message if needed
     // Replace with animation
-    if (loading) return <p>Läser in poster...</p>
+    if (loading) return <p>Loading posts...</p>
     if (error) return <p>Error</p>
 
     return (
         <>
             <h1>Alla poster</h1>
-            {posts.length === 0 && <p>Ingen poster att visa.</p>}
+            {posts.length === 0 && <p>No blog posts to show.</p>}
             {posts.map((post) => (
                 <PostItem key={post.id} post={post} />
             ))}
