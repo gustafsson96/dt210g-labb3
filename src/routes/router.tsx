@@ -7,6 +7,7 @@ import Admin from "../pages/AdminPage";
 import ProtectedRoutes from "./ProtectedRoutes";
 import AdminCreatePost from "../pages/AdminCreatePost";
 import AdminEditPost from "../pages/AdminEditPost";
+import AdminPage from "../pages/AdminPage";
 
 // Create router configuration for the application
 export const router = createBrowserRouter([
@@ -19,7 +20,7 @@ export const router = createBrowserRouter([
   { path: "/admin",
     element: (
       <ProtectedRoutes>
-        <Admin />
+        <AdminPage />
       </ProtectedRoutes>
     ),
     children: [
