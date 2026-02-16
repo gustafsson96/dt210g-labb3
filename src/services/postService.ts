@@ -1,4 +1,9 @@
+import type { Post }  from "../interfaces/Post";
+
 const api = "http://localhost:3000";
+
+// Get the token
+const getToken = () => localStorage.getItem("token");
 
 // GET all blog posts from api
 export const getPosts = async () => {
@@ -7,8 +12,58 @@ export const getPosts = async () => {
     });
 
     if (!response.ok) {
-        throw new Error("Gick ej att hämta inlägg.");
+        throw new Error("An error occurred.");
     }
 
     return response.json();
 }
+
+// POST to create a new post
+export const createPost = async (post: Omit<Post, "id" | "created_at" | "updated_at">) => {
+    const response = await fetch(`${api}/posts`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${getToken()}`
+        },
+        body: JSON.stringify(post)
+    });
+
+    if (!response.ok) {
+        throw new Error("Could not create blog post.");
+    }
+
+    return response.json();
+};
+
+// PUT update a post based on id
+export const updatePost = async (id: number, post: Partial<Post>) => {
+    const response = await fetch(`${api}/posts/${id}`, {
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${getToken()}`
+        },
+        body: JSON.stringify(post)
+    });
+
+    if (!response.ok) {
+        throw new Error("Could not update blog post.");
+    }
+
+    return response.json();
+};
+
+// DELETE a post based on id
+export const deletePost = async (id: number) => {
+    const response = await fetch(`${api}/posts/${id}`, {
+        method: "DELETE",
+        headers: {
+            Authorization: `Bearer ${getToken()}`
+        }
+    });
+
+    if (!response.ok) {
+        throw new Error("Could not delete blog post.");
+    }
+};
