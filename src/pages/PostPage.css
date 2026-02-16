@@ -1,0 +1,31 @@
+.post-page-container {
+    max-width: 800px;
+    margin: 2em auto;
+    padding: 0 1em;
+}
+
+.post-meta {
+    display: flex;
+    font-size: 1em;
+    color: #777;
+    margin-bottom: 1.5em;
+}
+
+.post-content {
+    line-height: 1.6;
+    margin-bottom: 2em;
+}
+
+.back-button {
+    padding: 0.5em 1em;
+    background-color: rgb(169, 27, 122);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.back-button:hover {
+    background-color: rgb(218, 93, 176);
+}
