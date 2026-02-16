@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { getPosts, deletePost } from "../services/postService";
 import type { Post } from "../interfaces/Post";
 import { Link } from "react-router-dom";
+import Navbar from "../components/Navbar";
 
 function AdminPage() {
     const [posts, setPosts] = useState<Post[]>([]);
@@ -37,6 +38,7 @@ function AdminPage() {
 
     return (
         <>
+            <Navbar />
             <h1>Admin</h1>
             <Link to="/admin/create">Create a new blog post.</Link>
 
