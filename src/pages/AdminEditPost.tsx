@@ -3,6 +3,7 @@ import { useNavigate, useParams, Link } from "react-router-dom";
 import { getPost, updatePost } from "../services/postService";
 import type { Post } from "../interfaces/Post";
 import Navbar from "../components/Navbar"
+import "./AdminEditPost.css";
 
 function AdminEditPost() {
     // Get post id from url
@@ -56,6 +57,7 @@ function AdminEditPost() {
     return (
         <>
             <Navbar />
+            <div className="admin-edit-page">
             <h1>Edit Blog Post</h1>
 
             <form onSubmit={handleSubmit}>
@@ -81,9 +83,10 @@ function AdminEditPost() {
                 <button type="submit">Update Post</button>
             </form>
             <Link to="/admin">
-                <button>Tillbaka till admin</button>
+                <button className="back-button">← Back to Admin</button>
             </Link>
-            {error && <p style={{ color: "red" }}>{error}</p>}
+             {error && <p className="error-message">{error}</p>}
+            </div>
         </>
 
     )

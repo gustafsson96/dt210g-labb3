@@ -1,0 +1,70 @@
+.admin-create-page {
+  max-width: 700px;
+  margin: 2em auto;
+  padding: 2em;
+  background-color: #fffefc;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.admin-create-page h1 {
+  color: rgb(169, 27, 122);
+  margin-bottom: 1.5em;
+  text-align: center;
+}
+
+.admin-create-page form {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+}
+
+.admin-create-page label {
+  font-weight: 500;
+  margin-bottom: 0.3em;
+}
+
+.admin-create-page input,
+.admin-create-page textarea {
+  padding: 0.5em;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1em;
+  width: 100%;
+  resize: vertical;
+}
+
+.admin-create-page textarea {
+  min-height: 150px;
+}
+
+.admin-create-page button {
+    font-weight: bold;
+    padding: 0.6em 1.2em;
+    background-color: rgb(169, 27, 122);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    align-self: flex-start;
+    transition: background-color 0.2s ease;
+}
+
+.admin-create-page button:hover {
+  background-color: rgb(218, 93, 176);
+}
+
+.back-button {
+  margin-top: 1em;
+  background-color: #777;
+}
+
+.back-button:hover {
+  background-color: #555;
+}
+
+.error-message {
+  color: red;
+  margin-top: 0.5em;
+}

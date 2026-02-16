@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { createPost } from "../services/postService";
 import Navbar from "../components/Navbar";
+import "./AdminCreatePost.css";
 
 function AdminCreatePost() {
     // States for title, content and error message
@@ -27,35 +28,37 @@ function AdminCreatePost() {
     return (
         <>
             <Navbar />
-            <h1>Create new blog post</h1>
+            <div className="admin-create-page">
+                <h1>Create new blog post</h1>
 
-            {error && <p style={{ color: "red" }}>{error}</p>}
+                {error && <p className="error-message">{error}</p>}
 
-            <form onSubmit={handleSubmit}>
-                <div>
-                    <label>Titel:</label>
-                    <input
-                        type="text"
-                        value={title}
-                        onChange={(e) => setTitle(e.target.value)}
-                        required
-                    />
-                </div>
+                <form onSubmit={handleSubmit}>
+                    <div>
+                        <label>Titel:</label>
+                        <input
+                            type="text"
+                            value={title}
+                            onChange={(e) => setTitle(e.target.value)}
+                            required
+                        />
+                    </div>
 
-                <div>
-                    <label>Content:</label>
-                    <textarea
-                        value={content}
-                        onChange={(e) => setContent(e.target.value)}
-                        required
-                    />
-                </div>
+                    <div>
+                        <label>Content:</label>
+                        <textarea
+                            value={content}
+                            onChange={(e) => setContent(e.target.value)}
+                            required
+                        />
+                    </div>
 
-                <button type="submit">Create Post</button>
-            </form>
-            <Link to="/admin">
-                <button>Tillbaka till admin</button>
-            </Link>
+                    <button type="submit">Create Post</button>
+                </form>
+                <Link to="/admin">
+                    <button className="back-button">← Back to Admin</button>
+                </Link>
+            </div>
         </>
     );
 }
