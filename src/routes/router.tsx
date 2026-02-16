@@ -5,6 +5,8 @@ import Post from "../pages/PostPage";
 import Login from "../pages/LoginPage";
 import Admin from "../pages/AdminPage";
 import ProtectedRoutes from "./ProtectedRoutes";
+import AdminCreatePost from "../pages/AdminCreatePost";
+import AdminEditPost from "../pages/AdminEditPost";
 
 // Create router configuration for the application
 export const router = createBrowserRouter([
@@ -19,6 +21,10 @@ export const router = createBrowserRouter([
       <ProtectedRoutes>
         <Admin />
       </ProtectedRoutes>
-    )
+    ),
+    children: [
+      { path: "create", element: <AdminCreatePost /> },
+      { path: "edit/:id", element: <AdminEditPost />}
+    ]
   }
 ]);

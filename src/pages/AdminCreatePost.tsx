@@ -1,15 +1,13 @@
-import { Outlet } from "react-router-dom";
 import Navbar from "../components/Navbar"
 
-function Admin() {
+function AdminCreatePost() {
     return (
         <>
         <Navbar />
         <h1>Admin</h1>
-        <Outlet />
         </>
 
     )
 }
 
-export default Admin;
+export default AdminCreatePost;
