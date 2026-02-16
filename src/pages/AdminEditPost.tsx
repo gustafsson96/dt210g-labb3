@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams, Link } from "react-router-dom";
 import { getPost, updatePost } from "../services/postService";
 import type { Post } from "../interfaces/Post";
 import Navbar from "../components/Navbar"
@@ -80,7 +80,9 @@ function AdminEditPost() {
 
                 <button type="submit">Update Post</button>
             </form>
-
+            <Link to="/admin">
+                <button>Tillbaka till admin</button>
+            </Link>
             {error && <p style={{ color: "red" }}>{error}</p>}
         </>
 

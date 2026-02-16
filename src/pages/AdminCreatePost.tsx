@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { createPost } from "../services/postService";
 import Navbar from "../components/Navbar";
 
@@ -53,6 +53,9 @@ function AdminCreatePost() {
 
                 <button type="submit">Create Post</button>
             </form>
+            <Link to="/admin">
+                <button>Tillbaka till admin</button>
+            </Link>
         </>
     );
 }
