@@ -1,0 +1,82 @@
+.admin-page {
+    max-width: 900px;
+    margin: 2em auto;
+    padding: 0 1em;
+    font-family: Arial, sans-serif;
+}
+
+.admin-page h1 {
+    color: rgb(169, 27, 122);
+    margin-bottom: 1em;
+}
+
+.create-post-link {
+    display: inline-block;
+    margin-bottom: 1.5em;
+    padding: 0.5em 1em;
+    background-color: rgb(169, 27, 122);
+    color: white;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background-color 0.2s;
+}
+
+.create-post-link:hover {
+    background-color: rgb(218, 93, 176);
+}
+
+.admin-post {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 1em 1.2em;
+    margin-bottom: 1em;
+    background-color: #fffefc;
+    box-shadow: 0 1px 5px rgba(0,0,0,0.05);
+}
+
+.admin-post h3 {
+    color: rgb(169, 27, 122);
+    margin-bottom: 0.5em;
+}
+
+.admin-post p {
+    margin-bottom: 0.8em;
+    color: #333;
+}
+
+.admin-post-actions {
+    display: flex;
+    gap: 0.5em;
+    margin-top: 1.2em;
+}
+
+.admin-post-actions a,
+.admin-post-actions button {
+    padding: 0.1em 0.7em;
+    font-size: 0.9em;
+    font-weight: bold;
+    border-radius: 4px;
+    cursor: pointer;
+    border: none;
+    text-decoration: none;
+    transition: background-color 0.2s;
+}
+
+.admin-post-actions a {
+    background-color: #419d44;
+    color: white;
+}
+
+.admin-post-actions a:hover {
+    background-color: #08800e;
+}
+
+.admin-post-actions button {
+    background-color: #ca0300;
+    color: white;
+}
+
+.admin-post-actions button:hover {
+    background-color: #ad0300;
+}

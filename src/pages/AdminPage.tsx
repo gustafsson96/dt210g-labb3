@@ -3,6 +3,7 @@ import { getPosts, deletePost } from "../services/postService";
 import type { Post } from "../interfaces/Post";
 import { Link } from "react-router-dom";
 import Navbar from "../components/Navbar";
+import "./AdminPage.css";
 
 function AdminPage() {
     const [posts, setPosts] = useState<Post[]>([]);
@@ -39,19 +40,22 @@ function AdminPage() {
     return (
         <>
             <Navbar />
-            <h1>Admin</h1>
-            <Link to="/admin/create">Create a new blog post.</Link>
+            <div className="admin-page">
+                <h1>Admin</h1>
+                <Link to="/admin/create" className="create-post-link">Create a new blog post</Link>
 
-            {posts.map(post => (
-                <div key={post.id}>
-                    <h3>{post.title}</h3>
-                    <p>{post.content}</p>
-                    <Link to={`/admin/edit/${post.id}`}>Edit</Link>
-                    <button onClick={() => handleDelete(post.id)}>
-                        Ta bort
-                    </button>
-                </div>
-            ))}
+                {posts.map(post => (
+                    <div key={post.id} className="admin-post">
+                        <h3>{post.title}</h3>
+                        <p>{post.content.length > 100 ? post.content.slice(0, 100) + "..." : post.content}</p>
+                        <div className="admin-post-actions">
+                            <Link to={`/admin/edit/${post.id}`}>Edit</Link>
+                            <button onClick={() => handleDelete(post.id)}>Delete</button>
+                        </div>
+                    </div>
+
+                ))}
+            </div>
         </>
     );
 }
