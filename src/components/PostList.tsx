@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { getPosts } from "../services/postService";
 import type { Post } from "../interfaces/Post";
 import PostItem from "./PostItem";
+import "./PostList.css";
 
 function PostList() {
     // States to store posts, loading status and error messages
@@ -34,13 +35,13 @@ function PostList() {
     if (error) return <p>Error</p>
 
     return (
-        <>
-            <h1>Alla poster</h1>
-            {posts.length === 0 && <p>No blog posts to show.</p>}
-            {posts.map((post) => (
-                <PostItem key={post.id} post={post} />
-            ))}
-        </>
+            <div className="postlist-container">
+                <h1>Alla poster</h1>
+                {posts.length === 0 && <p>No blog posts to show.</p>}
+                {posts.map((post) => (
+                    <PostItem key={post.id} post={post} />
+                ))}
+            </div>
     );
 }
 

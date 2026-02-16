@@ -1,0 +1,11 @@
+.postlist-container {
+    max-width: 800px;
+    margin: 2em auto;
+    padding: 0 1em;
+}
+
+.postlist-container h1 {
+    text-align: center;
+    color: rgb(169, 27, 122);
+    font-size: 3em;
+}
