@@ -3,7 +3,6 @@ import Home from "../pages/HomePage";
 import PostList from "../pages/PostListPage";
 import Post from "../pages/PostPage";
 import Login from "../pages/LoginPage";
-import Admin from "../pages/AdminPage";
 import ProtectedRoutes from "./ProtectedRoutes";
 import AdminCreatePost from "../pages/AdminCreatePost";
 import AdminEditPost from "../pages/AdminEditPost";
