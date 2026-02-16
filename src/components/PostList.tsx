@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { getPosts } from "../services/postService";
 import type { Post } from "../interfaces/Post";
-import PostItem from "../components/PostItem";
+import PostItem from "./PostItem";
 
 function PostList() {
     // States to store posts, loading status and error messages

@@ -1,6 +1,5 @@
 import { createBrowserRouter } from "react-router-dom";
-import Home from "../pages/HomePage";
-import PostList from "../pages/PostListPage";
+import Blog from "../pages/HomePage";
 import PostPage from "../pages/PostPage";
 import Login from "../pages/LoginPage";
 import ProtectedRoutes from "./ProtectedRoutes";
@@ -11,8 +10,7 @@ import AdminPage from "../pages/AdminPage";
 // Create router configuration for the application
 export const router = createBrowserRouter([
   // Public routes
-  { path: "/", element: <Home /> },
-  { path: "/posts", element: <PostList /> },
+  { path: "/", element: <Blog /> },
   { path: "/posts/:id", element: <PostPage /> },
   { path: "/login", element: <Login /> },
   // Protected admin route

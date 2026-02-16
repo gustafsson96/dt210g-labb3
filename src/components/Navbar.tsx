@@ -7,19 +7,10 @@ function Navbar() {
 
   return (
     <nav className="navbar">
-      <div className="navbar-left">
-        <Link to="/" className="nav-link">Home</Link>
-        <Link to="/posts" className="nav-link">Posts</Link>
-      </div>
-
       <div className="navbar-right">
-        {user ? (
-          <>
-            <button className="nav-button" onClick={logout}>Logout</button>
-          </>
-        ) : (
-          <Link to="/login" className="nav-link">Login</Link>
-        )}
+        {!user && <Link to="/" className="nav-link">Blog</Link>}
+        {!user && <Link to="/login" className="nav-link">Login</Link>}
+        {user && <button className="nav-button" onClick={logout}>Logout</button>}
       </div>
     </nav>
   );

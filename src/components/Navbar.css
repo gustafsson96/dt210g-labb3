@@ -1,13 +1,13 @@
 .navbar {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
   align-items: center;
   padding: 1em 2em;
   border-bottom: 1px solid #ccc;
   background-color: #f4f4f4;
 }
 
-.navbar-left, .navbar-right {
+.navbar-right {
   display: flex;
   align-items: center;
 }

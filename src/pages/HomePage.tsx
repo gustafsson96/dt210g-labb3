@@ -1,5 +1,13 @@
-function Home() {
-    return <h1>Home</h1>;
+import Navbar from "../components/Navbar";
+import PostList from "../components/PostList";
+
+function Blog() {
+    return (
+    <>
+    <Navbar />
+    <PostList/>
+    </>
+    )
 }
 
-export default Home;
+export default Blog;

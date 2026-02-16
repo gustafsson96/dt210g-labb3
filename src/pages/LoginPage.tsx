@@ -1,6 +1,7 @@
 import { useState, useEffect, type SyntheticEvent } from "react";
 import { useAuth } from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
+import Navbar from "../components/Navbar";
 import "./LoginPage.css";
 
 const LoginPage = () => {
@@ -14,7 +15,7 @@ const LoginPage = () => {
 
     // Control user
     useEffect(() => {
-        if(user) {
+        if (user) {
             navigate("/admin");
         }
     }, [user]);
@@ -33,42 +34,44 @@ const LoginPage = () => {
     }
 
     return (
-        // Login form and container
-        <div className="login-container">
-            <div className="login-card">
-                <h1 className="login-title">Login</h1>
-                {error && <p className="error">{error}</p>}
-                <form className="login-form" onSubmit={handleSubmit}>
-                    <div className="form-group">
-                        <label htmlFor="username">Username</label>
-                        <input
-                            id="username"
-                            type="text"
-                            value={username}
-                            onChange={(e) => setUsername(e.target.value)}
-                            placeholder="Enter username"
-                            required
-                        />
-                    </div>
+        <>
+        <Navbar />
+            <div className="login-container">
+                <div className="login-card">
+                    <h1 className="login-title">Login</h1>
+                    {error && <p className="error">{error}</p>}
+                    <form className="login-form" onSubmit={handleSubmit}>
+                        <div className="form-group">
+                            <label htmlFor="username">Username</label>
+                            <input
+                                id="username"
+                                type="text"
+                                value={username}
+                                onChange={(e) => setUsername(e.target.value)}
+                                placeholder="Enter username"
+                                required
+                            />
+                        </div>
 
-                    <div className="form-group">
-                        <label htmlFor="password">Password</label>
-                        <input
-                            id="password"
-                            type="password"
-                            value={password}
-                            onChange={(e) => setPassword(e.target.value)}
-                            placeholder="Enter password"
-                            required
-                        />
-                    </div>
+                        <div className="form-group">
+                            <label htmlFor="password">Password</label>
+                            <input
+                                id="password"
+                                type="password"
+                                value={password}
+                                onChange={(e) => setPassword(e.target.value)}
+                                placeholder="Enter password"
+                                required
+                            />
+                        </div>
 
-                    <button type="submit" className="login-button">
-                        Sign In
-                    </button>
-                </form>
+                        <button type="submit" className="login-button">
+                            Sign In
+                        </button>
+                    </form>
+                </div>
             </div>
-        </div>
+        </>
     );
 };
 
