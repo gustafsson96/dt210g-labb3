@@ -16,15 +16,7 @@ export const router = createBrowserRouter([
   { path: "/posts/:id", element: <Post /> },
   { path: "/login", element: <Login /> },
   // Protected admin route
-  { path: "/admin",
-    element: (
-      <ProtectedRoutes>
-        <AdminPage />
-      </ProtectedRoutes>
-    ),
-    children: [
-      { path: "create", element: <AdminCreatePost /> },
-      { path: "edit/:id", element: <AdminEditPost />}
-    ]
-  }
+  { path: "/admin", element: <ProtectedRoutes><AdminPage /></ProtectedRoutes> },
+  { path: "/admin/create", element: <ProtectedRoutes><AdminCreatePost /></ProtectedRoutes> },
+  { path: "/admin/edit/:id", element: <ProtectedRoutes><AdminEditPost /></ProtectedRoutes> }
 ]);

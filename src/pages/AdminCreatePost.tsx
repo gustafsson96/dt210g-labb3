@@ -1,13 +1,60 @@
-import Navbar from "../components/Navbar"
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { createPost } from "../services/postService";
+import Navbar from "../components/Navbar";
 
 function AdminCreatePost() {
+    // States for title, content and error message
+    const [title, setTitle] = useState("");
+    const [content, setContent] = useState("");
+    const [error, setError] = useState<string | null>(null);
+
+    // Use to navigate back to admin after a post has been created
+    const navigate = useNavigate();
+
+    // Handle form submit 
+    const handleSubmit = async (e: React.SyntheticEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        setError(null);
+        // Create post via service
+        try {
+            await createPost({ title, content, author: "Admin" });
+            navigate("/admin");
+        } catch (err) {
+            setError("Could not create blog post.")
+        }
+    }
     return (
         <>
-        <Navbar />
-        <h1>Admin</h1>
-        </>
+            <Navbar />
+            <h1>Create new blog post</h1>
 
-    )
+            {error && <p style={{ color: "red" }}>{error}</p>}
+
+            <form onSubmit={handleSubmit}>
+                <div>
+                    <label>Titel:</label>
+                    <input
+                        type="text"
+                        value={title}
+                        onChange={(e) => setTitle(e.target.value)}
+                        required
+                    />
+                </div>
+
+                <div>
+                    <label>Content:</label>
+                    <textarea
+                        value={content}
+                        onChange={(e) => setContent(e.target.value)}
+                        required
+                    />
+                </div>
+
+                <button type="submit">Create Post</button>
+            </form>
+        </>
+    );
 }
 
 export default AdminCreatePost;
