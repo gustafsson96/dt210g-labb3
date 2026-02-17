@@ -9,7 +9,10 @@ const LoginPage = () => {
     // States for user input
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
-    const [error, setError] = useState("");
+
+    const [usernameError, setUsernameError] = useState("");
+    const [passwordError, setPasswordError] = useState("");
+    const [generalError, setGeneralError] = useState("");
 
     const { login, user } = useAuth();
     const navigate = useNavigate();
@@ -23,24 +26,46 @@ const LoginPage = () => {
 
     const handleSubmit = async (e: SyntheticEvent<HTMLFormElement>) => {
         e.preventDefault();
-        setError("");
 
+        // Reset errors
+        setUsernameError("");
+        setPasswordError("");
+        setGeneralError("");
+
+        let hasError = false;
+
+        // Feedback username
+        if (!username.trim()) {
+            setUsernameError("Username is required");
+            hasError = true;
+        }
+
+        // Feedback password
+        if (!password.trim()) {
+            setPasswordError("Password is required");
+            hasError = true;
+        }
+
+        if (hasError) return;
+
+        // Login and navigate to admin page
         try {
             await login({ username, password });
             navigate("/admin");
-
-        } catch (error) {
-            setError("Login failed.")
-        }
-    }
-
+        // General feedback
+        } catch {
+            setGeneralError("Incorrect username or password.");
+        } 
+    };
     return (
         <>
             <Navbar />
             <main className="login-container">
                 <div className="login-card">
                     <h1 className="login-title">Login</h1>
-                    {error && <p className="error">{error}</p>}
+                    {generalError && (
+                        <p className="error-message">{generalError}</p>
+                    )}
                     <form className="login-form" onSubmit={handleSubmit}>
                         <div className="form-group">
                             <label htmlFor="username">Username</label>
@@ -48,10 +73,16 @@ const LoginPage = () => {
                                 id="username"
                                 type="text"
                                 value={username}
-                                onChange={(e) => setUsername(e.target.value)}
+                                onChange={(e) => {
+                                    setUsername(e.target.value);
+                                    setUsernameError("");
+                                }}
                                 placeholder="Enter username"
-                                required
                             />
+                            {usernameError && (
+                                <span className="error-message">{usernameError}</span>
+                            )}
+
                         </div>
 
                         <div className="form-group">
@@ -60,10 +91,15 @@ const LoginPage = () => {
                                 id="password"
                                 type="password"
                                 value={password}
-                                onChange={(e) => setPassword(e.target.value)}
+                                onChange={(e) => {
+                                    setPassword(e.target.value);
+                                    setPasswordError("");
+                                }}
                                 placeholder="Enter password"
-                                required
                             />
+                            {passwordError && (
+                                <span className="error-message">{passwordError}</span>
+                            )}
                         </div>
 
                         <button type="submit" className="login-button">

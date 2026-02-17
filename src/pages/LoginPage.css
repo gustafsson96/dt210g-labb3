@@ -53,8 +53,7 @@
     background-color: rgb(218, 93, 176);
 }
 
-.error {
+.error-message {
   color: red;
   font-size: 0.9rem;
-  text-align: center;
 }
