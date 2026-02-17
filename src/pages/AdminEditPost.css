@@ -54,6 +54,11 @@
     background-color: rgb(218, 93, 176);
 }
 
+.admin-edit-page button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
 .back-button {
     margin-top: 1em;
     background-color: #777;
@@ -64,6 +69,6 @@
 }
 
 .error-message {
-    color: red;
-    margin-top: 0.5em;
+  color: #b00020;
+  font-size: 0.8rem;
 }

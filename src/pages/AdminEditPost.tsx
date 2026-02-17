@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useNavigate, useParams, Link } from "react-router-dom";
 import { getPost, updatePost } from "../services/postService";
 import type { Post } from "../interfaces/Post";
+import { PulseLoader } from "react-spinners";
 import Navbar from "../components/Navbar"
 import "./AdminEditPost.css";
 
@@ -12,11 +13,15 @@ function AdminEditPost() {
     // Use to navigate back to admin after a post has been updated
     const navigate = useNavigate();
 
-    // States for title, content, error messages and loading
+    // States for title and content
     const [title, setTitle] = useState("");
     const [content, setContent] = useState("");
-    const [error, setError] = useState<string | null>(null);
-    const [loading, setLoading] = useState(true);
+
+    // States for error messages and loading
+    const [titleError, setTitleError] = useState("");
+    const [contentError, setContentError] = useState("");
+    const [generalError, setGeneralError] = useState("");
+    const [loading, setLoading] = useState(false);
 
     // Fetch single post data when component loads or when id changes
     useEffect(() => {
@@ -28,7 +33,7 @@ function AdminEditPost() {
                 setTitle(post.title);
                 setContent(post.content);
             } catch {
-                setError("Could not load blog post.");
+                setGeneralError("Could not load blog post");
             } finally {
                 setLoading(false);
             }
@@ -39,53 +44,88 @@ function AdminEditPost() {
     // Handle form submit
     const handleSubmit = async (e: React.SyntheticEvent<HTMLFormElement>) => {
         e.preventDefault();
-        setError(null);
+
+        setGeneralError("");
+        setTitleError("");
+        setContentError("");
 
         if (!id) return;
+
+        let hasError = false;
+
+        if (!title.trim()) {
+            setTitleError("Title is required");
+            hasError = true;
+        }
+
+        if (!content.trim()) {
+            setContentError("Content is required");
+            hasError = true;
+        }
+
+        if (hasError) return;
+
+        setLoading(true);
 
         try {
             await updatePost(parseInt(id), { title, content, author: "Admin" });
             navigate("/admin");
         } catch {
-            setError("Could not update blog post.");
+            setGeneralError("Could not update blog post.");
+        } finally {
+            setLoading(false);
         }
     };
-
-    if (loading) return <p>Loading...</p>;
-    if (error) return <p style={{ color: "red" }}>{error}</p>;
 
     return (
         <>
             <Navbar />
             <div className="admin-edit-page">
-            <h1>Edit Blog Post</h1>
+                <h1>Edit Blog Post</h1>
+                {generalError && (
+                    <p className="error-message">{generalError}</p>
+                )}
+                <form onSubmit={handleSubmit}>
+                    <div>
+                        <label>Title:</label>
+                        <input
+                            type="text"
+                            value={title}
+                            onChange={(e) => {
+                                setTitle(e.target.value);
+                                setTitleError("");
+                            }}
+                        />
+                        {titleError && (
+                            <span className="error-message">{titleError}</span>
+                        )}
+                    </div>
 
-            <form onSubmit={handleSubmit}>
-                <div>
-                    <label>Title:</label>
-                    <input
-                        type="text"
-                        value={title}
-                        onChange={e => setTitle(e.target.value)}
-                        required
-                    />
-                </div>
+                    <div>
+                        <label>Content:</label>
+                        <textarea
+                            value={content}
+                            onChange={(e) => {
+                                setContent(e.target.value);
+                                setContentError("");
+                            }}
+                        />
+                        {contentError && (
+                            <span className="error-message">{contentError}</span>
+                        )}
+                    </div>
 
-                <div>
-                    <label>Content:</label>
-                    <textarea
-                        value={content}
-                        onChange={e => setContent(e.target.value)}
-                        required
-                    />
-                </div>
-
-                <button type="submit">Update Post</button>
-            </form>
-            <Link to="/admin">
-                <button className="back-button">← Back to Admin</button>
-            </Link>
-             {error && <p className="error-message">{error}</p>}
+                    <button type="submit" disabled={loading}>
+                        {loading ? (
+                            <PulseLoader size={8} color="#ffffff" />
+                        ) : (
+                            "Update Post"
+                        )}
+                    </button>
+                </form>
+                <Link to="/admin">
+                    <button className="back-button">← Back to Admin</button>
+                </Link>
             </div>
         </>
 
