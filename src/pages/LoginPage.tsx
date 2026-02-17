@@ -1,6 +1,7 @@
 import { useState, useEffect, type SyntheticEvent } from "react";
 import { useAuth } from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
+import { PulseLoader } from "react-spinners";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer"
 import "./LoginPage.css";
@@ -13,6 +14,7 @@ const LoginPage = () => {
     const [usernameError, setUsernameError] = useState("");
     const [passwordError, setPasswordError] = useState("");
     const [generalError, setGeneralError] = useState("");
+    const [loading, setLoading] = useState(false);
 
     const { login, user } = useAuth();
     const navigate = useNavigate();
@@ -50,12 +52,15 @@ const LoginPage = () => {
 
         // Login and navigate to admin page
         try {
+                        setLoading(true);
             await login({ username, password });
             navigate("/admin");
-        // General feedback
+            // General feedback
         } catch {
             setGeneralError("Incorrect username or password.");
-        } 
+        } finally {
+            setLoading(false);
+        }
     };
     return (
         <>
@@ -102,9 +107,13 @@ const LoginPage = () => {
                             )}
                         </div>
 
-                        <button type="submit" className="login-button">
-                            Sign In
-                        </button>
+                    <button type="submit" disabled={loading} className="login-button">
+                        {loading ? (
+                            <PulseLoader size={8} color="#ffffff" />
+                        ) : (
+                            "Sign In"
+                        )}
+                    </button>
                     </form>
                 </div>
             </main>
