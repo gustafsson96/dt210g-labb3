@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { createPost } from "../services/postService";
 import { PulseLoader } from "react-spinners";
+import { useAuth } from "../context/AuthContext";
 import Navbar from "../components/Navbar";
 import "./AdminCreatePost.css";
 
@@ -17,6 +18,9 @@ function AdminCreatePost() {
 
     // Use to navigate back to admin after a post has been created
     const navigate = useNavigate();
+
+    // Get user to display as author
+    const { user } = useAuth();
 
     // Handle form submit 
     const handleSubmit = async (e: React.SyntheticEvent<HTMLFormElement>) => {
@@ -50,7 +54,7 @@ function AdminCreatePost() {
 
         try {
             setLoading(true);
-            await createPost({ title, content, author: "Admin" });
+            await createPost({ title, content, author: user?.username || "Admin" });
             navigate("/admin");
         } catch {
             setGeneralError("Could not create blog post. Please try again.");
