@@ -72,3 +72,11 @@
   color: #b00020;
   font-size: 0.8rem;
 }
+
+.success-message {
+  color: #155724;
+  background-color: #d4edda;
+  padding: 0.5em 1em;
+  border-radius: 4px;
+  margin: 0.5em 0;
+}

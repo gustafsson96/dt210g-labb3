@@ -17,10 +17,11 @@ function AdminEditPost() {
     const [title, setTitle] = useState("");
     const [content, setContent] = useState("");
 
-    // States for error messages and loading
+    // States for user feedback and loading
     const [titleError, setTitleError] = useState("");
     const [contentError, setContentError] = useState("");
     const [generalError, setGeneralError] = useState("");
+    const [successMessage, setSuccessMessage] = useState("");
     const [loading, setLoading] = useState(false);
 
     // Fetch single post data when component loads or when id changes
@@ -69,7 +70,8 @@ function AdminEditPost() {
 
         try {
             await updatePost(parseInt(id), { title, content, author: "Admin" });
-            navigate("/admin");
+            setSuccessMessage("Blog post created successfully!");
+            setTimeout(() => navigate("/admin"), 1500);
         } catch {
             setGeneralError("Could not update blog post.");
         } finally {
@@ -85,6 +87,7 @@ function AdminEditPost() {
                 {generalError && (
                     <p className="error-message">{generalError}</p>
                 )}
+                {successMessage && <p className="success-message">{successMessage}</p>}
                 <form onSubmit={handleSubmit}>
                     <div>
                         <label>Title:</label>

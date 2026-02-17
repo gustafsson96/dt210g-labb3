@@ -7,13 +7,15 @@ import Navbar from "../components/Navbar";
 import "./AdminCreatePost.css";
 
 function AdminCreatePost() {
-    // States for title, content and error message
+    // States for title and content
     const [title, setTitle] = useState("");
     const [content, setContent] = useState("");
 
+    // States for user feedback and loading
     const [titleError, setTitleError] = useState("");
     const [contentError, setContentError] = useState("");
     const [generalError, setGeneralError] = useState("");
+    const [successMessage, setSuccessMessage] = useState("");
     const [loading, setLoading] = useState(false);
 
     // Use to navigate back to admin after a post has been created
@@ -55,7 +57,8 @@ function AdminCreatePost() {
         try {
             setLoading(true);
             await createPost({ title, content, author: user?.username || "Admin" });
-            navigate("/admin");
+            setSuccessMessage("Blog post updated successfully!");
+            setTimeout(() => navigate("/admin"), 1500);
         } catch {
             setGeneralError("Could not create blog post. Please try again.");
         } finally {
@@ -70,6 +73,7 @@ function AdminCreatePost() {
                 {generalError && (
                     <p className="error-message">{generalError}</p>
                 )}
+                {successMessage && <p className="success-message">{successMessage}</p>}
                 <form onSubmit={handleSubmit}>
                     <div>
                         <label>Titel:</label>

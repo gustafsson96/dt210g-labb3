@@ -55,6 +55,11 @@
   background-color: rgb(218, 93, 176);
 }
 
+.admin-create-page button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
 .back-button {
   margin-top: 1em;
   background-color: #777;
@@ -69,7 +74,10 @@
   font-size: 0.8rem;
 }
 
-.primary-button:disabled {
-  opacity: 0.6;
-  cursor: not-allowed;
+.success-message {
+  color: #155724;
+  background-color: #d4edda;
+  padding: 0.5em 1em;
+  border-radius: 4px;
+  margin: 0.5em 0;
 }
