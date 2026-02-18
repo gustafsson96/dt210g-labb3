@@ -63,12 +63,11 @@ function AdminPage() {
                                 <button onClick={() => handleDelete(post.id)}>Delete</button>
                             </div>
                         </div>
-
                     ))
-                };
+                }
             </div>
         </>
-    );
+    )
 }
 
 export default AdminPage;

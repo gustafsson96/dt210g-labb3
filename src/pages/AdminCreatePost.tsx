@@ -57,7 +57,7 @@ function AdminCreatePost() {
         try {
             setLoading(true);
             await createPost({ title, content, author: user?.username || "Admin" });
-            setSuccessMessage("Blog post updated successfully!");
+            setSuccessMessage("Blog post created successfully!");
             setTimeout(() => navigate("/admin"), 1500);
         } catch {
             setGeneralError("Could not create blog post. Please try again.");
