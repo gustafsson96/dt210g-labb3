@@ -80,3 +80,8 @@
 .admin-post-actions button:hover {
     background-color: #ad0300;
 }
+
+.success-message {
+    color: green;
+    font-weight: bold;
+}

@@ -9,6 +9,7 @@ import "./AdminPage.css";
 function AdminPage() {
     const [posts, setPosts] = useState<Post[]>([]);
     const [error, setError] = useState<string | null>(null);
+    const [success, setSuccess] = useState<string | null>(null);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
@@ -30,6 +31,7 @@ function AdminPage() {
         try {
             await deletePost(id);
             setPosts(posts.filter(p => p.id !== id));
+            setSuccess("Blog post deleted successfully.");
         } catch {
             setError("Could not delete blog post.");
         }
@@ -48,6 +50,10 @@ function AdminPage() {
                 )}
                 {error && !loading && (
                     <p className="error-message">{error}</p>
+                )}
+
+                {success && !loading && (
+                    <p className="success-message">{success}</p>
                 )}
 
                 {!loading && !error && posts.length === 0 && (
