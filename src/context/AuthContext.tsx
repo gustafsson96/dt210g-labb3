@@ -2,7 +2,7 @@ import { createContext, useState, useContext } from "react";
 import type { ReactNode } from "react";
 import type { User, LoginCredentials, AuthRes, AuthContext } from '../interfaces/Auth';
 
-const api = "http://localhost:3000";
+const api = "https://dt210g-labb3-backend.onrender.com";
 
 // Create context for authentication
 const AuthContext = createContext<AuthContext | null>(null);

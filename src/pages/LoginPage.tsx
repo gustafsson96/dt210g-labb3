@@ -52,7 +52,7 @@ const LoginPage = () => {
 
         // Login and navigate to admin page
         try {
-                        setLoading(true);
+            setLoading(true);
             await login({ username, password });
             navigate("/admin");
             // General feedback
@@ -107,13 +107,13 @@ const LoginPage = () => {
                             )}
                         </div>
 
-                    <button type="submit" disabled={loading} className="login-button">
-                        {loading ? (
-                            <PulseLoader size={8} color="#ffffff" />
-                        ) : (
-                            "Sign In"
-                        )}
-                    </button>
+                        <button type="submit" disabled={loading} className="login-button">
+                            {loading ? (
+                                <PulseLoader size={8} color="#ffffff" />
+                            ) : (
+                                "Sign In"
+                            )}
+                        </button>
                     </form>
                 </div>
             </main>

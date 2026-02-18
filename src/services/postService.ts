@@ -1,6 +1,6 @@
 import type { Post } from "../interfaces/Post";
 
-const api = "http://localhost:3000";
+const api = "https://dt210g-labb3-backend.onrender.com";
 
 // Get the token
 const getToken = () => localStorage.getItem("token");
