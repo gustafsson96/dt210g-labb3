@@ -32,6 +32,7 @@ function AdminPage() {
             await deletePost(id);
             setPosts(posts.filter(p => p.id !== id));
             setSuccess("Blog post deleted successfully.");
+            setTimeout(() => setSuccess(null), 2000);
         } catch {
             setError("Could not delete blog post.");
         }
