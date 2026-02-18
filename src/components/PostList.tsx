@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { getPosts } from "../services/postService";
 import type { Post } from "../interfaces/Post";
+import { ClimbingBoxLoader } from "react-spinners";
 import PostItem from "./PostItem";
 import "./PostList.css";
 
@@ -28,20 +29,26 @@ function PostList() {
 
         fetchData();
     }, []);
-
-    // Show loading or error message if needed
-    // Replace with animation
-    if (loading) return <p>Loading posts...</p>
-    if (error) return <p>Error</p>
-
     return (
-            <main className="postlist-container">
-                <h1>Julia's Blog</h1>
-                {posts.length === 0 && <p>No blog posts to show.</p>}
-                {posts.map((post) => (
+        <main className="postlist-container">
+            <h1>Julia's Blog</h1>
+            {loading && (
+                <div>
+                    <ClimbingBoxLoader color="#c71ac1" />
+                </div>
+            )}
+            {error && !loading && (
+                <p className="error-message">{error}</p>
+            )}
+
+            {!loading && !error && posts.length === 0 && (
+                <p>No blog posts to show.</p>
+            )}
+            {!loading && !error &&
+                posts.map((post) => (
                     <PostItem key={post.id} post={post} />
                 ))}
-            </main>
+        </main>
     );
 }
 

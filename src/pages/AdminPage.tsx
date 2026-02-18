@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { getPosts, deletePost } from "../services/postService";
 import type { Post } from "../interfaces/Post";
 import { Link } from "react-router-dom";
+import { ClimbingBoxLoader } from "react-spinners";
 import Navbar from "../components/Navbar";
 import "./AdminPage.css";
 
@@ -33,10 +34,6 @@ function AdminPage() {
             setError("Could not delete blog post.");
         }
     };
-
-    if (loading) return <p>Loading...</p>;
-    if (error) return <p>{error}</p>;
-
     return (
         <>
             <Navbar />
@@ -44,17 +41,31 @@ function AdminPage() {
                 <h1>Admin View</h1>
                 <Link to="/admin/create" className="create-post-link">Create a new blog post</Link>
 
-                {posts.map(post => (
-                    <div key={post.id} className="admin-post">
-                        <h3>{post.title}</h3>
-                        <p>{post.content.length > 100 ? post.content.slice(0, 100) + "..." : post.content}</p>
-                        <div className="admin-post-actions">
-                            <Link to={`/admin/edit/${post.id}`}>Edit</Link>
-                            <button onClick={() => handleDelete(post.id)}>Delete</button>
-                        </div>
+                {loading && (
+                    <div>
+                        <ClimbingBoxLoader color="#c71ac1" />
                     </div>
+                )}
+                {error && !loading && (
+                    <p className="error-message">{error}</p>
+                )}
 
-                ))}
+                {!loading && !error && posts.length === 0 && (
+                    <p>No blog posts to show.</p>
+                )}
+                {!loading && !error &&
+                    posts.map(post => (
+                        <div key={post.id} className="admin-post">
+                            <h3>{post.title}</h3>
+                            <p>{post.content.length > 100 ? post.content.slice(0, 100) + "..." : post.content}</p>
+                            <div className="admin-post-actions">
+                                <Link to={`/admin/edit/${post.id}`}>Edit</Link>
+                                <button onClick={() => handleDelete(post.id)}>Delete</button>
+                            </div>
+                        </div>
+
+                    ))
+                };
             </div>
         </>
     );
