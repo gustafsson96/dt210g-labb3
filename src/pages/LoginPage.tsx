@@ -57,7 +57,7 @@ const LoginPage = () => {
             navigate("/admin");
             // General feedback
         } catch {
-            setGeneralError("Incorrect username or password.");
+            setGeneralError("Login failed");
         } finally {
             setLoading(false);
         }
