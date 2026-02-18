@@ -35,7 +35,7 @@ function AdminPage() {
         } catch {
             setError("Could not delete blog post.");
         }
-    };
+    }
     return (
         <>
             <Navbar />
